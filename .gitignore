@@ -1,2 +1,5 @@
 /.idea/
 /target/
+/app/target/
+/out/artifacts/scalatest_jar/
+/target2/scala-2.13/classes/
