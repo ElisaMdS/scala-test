@@ -13,12 +13,11 @@ $ java -jar orders.jar "2018-01-01 00:00:00" "2019-01-01 00:00:00" "a-b" "c-d" "
 In this case, a, b, c, d and e are integers and in a specific interval, the first value is supposed to be smaller than the second one.
 Some examples of valid commands are:
 ```bash
-$ java -jar orders.jar "2018-01-01 00:00:00" "2019-01-01 00:00:00" "a-b" "c-d" ">e"
-$ java -jar orders.jar "2018-01-01 00:00:00" "2019-01-01 00:00:00" ">e"
-$ java -jar orders.jar "2018-01-01 00:00:00" "2019-01-01 00:00:00" "a-b"
+$ java -jar orders.jar "2018-01-01 00:00:00" "2019-01-01 00:00:00" "1-3" "4-9" ">10"
+$ java -jar orders.jar "2018-01-01 00:00:00" "2019-01-01 00:00:00" ">4"
+$ java -jar orders.jar "2018-01-01 00:00:00" "2019-01-01 00:00:00" "1-6"
 ```
 
-The tool
 # Exercise Description
 As agreed I’m sending you the exercise that should be placed on your Github:
 
