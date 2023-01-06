@@ -4,12 +4,12 @@ import scala.collection.mutable
 import scala.math.Ordering.Implicits._
 
 object Main {
-  private def formatList(orders: List[Order], initialDateFormatted: Date, finalDateFormatted: Date): List[Order] = {
-    var formattedOrder: List[Order] = orders.filter(order => order.dateWhenTheOrderWasPlaced >= initialDateFormatted && order.dateWhenTheOrderWasPlaced <= finalDateFormatted)
-    return formattedOrder
+  private def filterOrderListByDate(orders: List[Order], initialDateFormatted: Date, finalDateFormatted: Date): List[Order] = {
+    var filteredOrders: List[Order] = orders.filter(order => order.dateWhenTheOrderWasPlaced >= initialDateFormatted && order.dateWhenTheOrderWasPlaced <= finalDateFormatted)
+    return filteredOrders
   }
 
-  private def productInterval(orders: List[Order], localFormatActualDay: LocalDate, intervalList: List[List[String]]): mutable.Map[String, Int] = {
+  private def generateResultMap(orders: List[Order], localFormatActualDay: LocalDate, intervalList: List[List[String]]): mutable.Map[String, Int] = {
     var intervals: scala.collection.mutable.Map[String, Int] = scala.collection.mutable.Map()
     intervalList.foreach(interval =>
       if (interval.head.isEmpty) intervals.put(">" + interval(1), 0)
@@ -51,7 +51,7 @@ object Main {
 
     var orders: List[Order] = Data.addData()
 
-    var filteredOrders: List[Order] = formatList(orders, initialDateFormatted, finalDateFormatted)
+    var filteredOrders: List[Order] = filterOrderListByDate(orders, initialDateFormatted, finalDateFormatted)
 
     var intervalList: List[List[String]] = List()
     resultMapKeys.foreach(interval => {
@@ -59,7 +59,7 @@ object Main {
       intervalList = splittedInterval :: intervalList
     })
 
-    var intervals = productInterval(filteredOrders, localFormatActualDay, intervalList)
+    var intervals = generateResultMap(filteredOrders, localFormatActualDay, intervalList)
 
     for ((key, value) <- intervals.toSeq.sortWith(_._1 < _._1)) println(s"$key months: $value orders")
   }
